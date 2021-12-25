@@ -32,7 +32,6 @@ def removeConnection(connect):
 def server():
     local_ip = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     local_ip.connect(("8.8.8.8", 80))
-    local_ip = socket.gethostbyname(hostname)
     SERVER_ADDRESS = local_ip.getsockname()[0]
 
     port = input("Input port: ")
