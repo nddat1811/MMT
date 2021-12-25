@@ -22,7 +22,20 @@ def handleClientConnection(connection, address):
             break
         elif msg !="":
             print(f'{address[0]}:{address[1]} - {msg}')
+            
+            mess = f'From {address[0]}:{address[1]} - {msg}'
+            broadcast(mess, connection)
 
+def broadcast(message: str, connection: socket.socket) -> None:
+    for client_conn in connections:
+        # Check if isn't the connection of who's send
+        if client_conn != connection:
+            try:
+                client_conn.send(message.encode())
+            except Exception as e:
+                print('Error broadcasting message: {e}')
+                remove_connection(client_conn)
+                
 def removeConnection(connect):
     if connect in connections:
         connect.close()
