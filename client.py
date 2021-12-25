@@ -26,9 +26,9 @@ def client():
         thread.start()
 
         print('Connected to server successful')
-
+        print('Input text to chat:')
         while True:
-            msg = input("Input text:")
+            msg = input()
             
 
             if msg == 'exit':
